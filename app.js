@@ -6,6 +6,7 @@ const cors = require('cors'); // added manually
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var propertiesRouter = require('./routes/properties');
 
 var app = express();
 app.use(cors());  // added manually
@@ -18,5 +19,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/properties', propertiesRouter);  // added manually 
 
 module.exports = app;
