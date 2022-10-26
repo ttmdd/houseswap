@@ -20,6 +20,7 @@ function App() {
   
 let [properties, setProperties] = useState([]);
 let [selected, setSelected ] = useState();
+const navigate = useNavigate();
 
 useEffect(() => {
   getProperties();
@@ -40,7 +41,11 @@ async function getProperties() {
   }
 }
 
-
+function selectedProject(id) {
+    let main = properties.find(p => p.id === id);
+    setSelected(main);
+    navigate("/selected");
+}
 
   return (
     <div className="App">
@@ -49,8 +54,8 @@ async function getProperties() {
       <Navbar />
 
       <Routes>
-          <Route path="/" element= {<HomeView properties={properties} />} />
-          <Route path="/properties/:id" element= {<SelectedView />} />
+          <Route path="/" element= {<HomeView properties={properties} selectedProject={id => selectedProject(id)}  />} />
+          <Route path="/selected" element= {<SelectedView selectedImg={selected} />} />
           <Route path="/favorites/:id" element= {<FavoritesView />} />
           <Route path="/login" element= {<LoginView />} />
           <Route path="add-new" element= {<AddNewView />} />

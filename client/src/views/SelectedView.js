@@ -1,13 +1,20 @@
 import React from 'react';
+import SelectedProperty from "../components/SelectedProperty";
+// import PropertiesList from "../components/PropertiesList"
 
 
 function SelectedView(props) {
+
+    let selected = props.selectedImg;
+
     return (
         <div className="SelectedView">
-            <h2>Selected</h2>
+            <SelectedProperty selectedImg={selected} />
+            {/* <PropertiesList /> */}
             
         </div>
     );
 }
 
 export default SelectedView;
+

@@ -4,7 +4,10 @@ import "./PropertiesList.css"
 
 function PropertiesList(props) {
 
-
+  function makeSelected(id) {
+    props.setSelectedCb(id);
+    
+  }
 
   return (
     <div id="propertiesList"> 
@@ -13,22 +16,22 @@ function PropertiesList(props) {
     {
           props.properties.map(s => (
          
-            <div id="card">
+            <div key ={s.id} id="card">
               <div>
                 <img
-                  key = {s.id}
+                  // key = {s.id}
                   src = {s.url}
                   alt = {s.location}
-                  // onClick = {e => makeSelected(s.id)}
+                  onClick = {e => makeSelected(s.id)}
                 />
                 </div>
 
             <div className="half">
-                <p key={s.id}>Location: {s.location}</p>
-                <p key={s.id}>Availability: {s.availability}</p>
-                <p key={s.id}>Number of rooms: {s.numofrooms}</p>
-                <p key={s.id}>Number of people: {s.numofpeople}</p>
-                <p key={s.id}>Rating: {s.rating}</p>
+                <p><b>Location:</b> {s.location}</p>
+                <p><b>Availability:</b> {s.availability}</p>
+                <p><b>Number of rooms:</b> {s.numofrooms}</p>
+                <p><b>Number of people:</b> {s.numofpeople}</p>
+                <p><b>Rating:</b> {s.rating}</p>
             </div>
             </div>
           ))

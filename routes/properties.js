@@ -35,9 +35,9 @@ router.post("/", async function(req, res) {
     // OR let {location, availability, numofrooms, numofpeople, rating} = req.body and then in let sql VALUES without the property.
 
     let sql = `
-        INSERT INTO properties (url, location, availability, numofrooms, numofpeople, rating)
+        INSERT INTO properties (url, title, location, availability, numofrooms, numofpeople, rating, description)
         VALUES
-            ("${property.url}", ${property.location}", "${property.availability}", ${property.numofrooms}, ${property.numofpeople}, ${property.rating})
+            ("${property.url}", "${property.title}", "${property.location}", "${property.availability}", ${property.numofrooms}, ${property.numofpeople}, ${property.rating}, "${property.description}")
     `;
 
     try {
