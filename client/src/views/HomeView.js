@@ -1,11 +1,14 @@
 import React from 'react';
+import PropertiesList from "../components/PropertiesList";
 
 
 function HomeView(props) {
+
+   let properties = props.properties;
+
     return (
         <div className="HomeView">
-            <h2>Home</h2>
-            
+            <PropertiesList properties={properties} />
         </div>
     );
 }
