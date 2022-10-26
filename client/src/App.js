@@ -19,6 +19,7 @@ import ErrorView from "./views/ErrorView";
 function App() {
   
 let [properties, setProperties] = useState([]);
+let [selected, setSelected ] = useState();
 
 useEffect(() => {
   getProperties();
@@ -39,6 +40,8 @@ async function getProperties() {
   }
 }
 
+
+
   return (
     <div className="App">
 
@@ -46,7 +49,7 @@ async function getProperties() {
       <Navbar />
 
       <Routes>
-          <Route path="/" element= {<HomeView properties={properties}/>} />
+          <Route path="/" element= {<HomeView properties={properties} />} />
           <Route path="/properties/:id" element= {<SelectedView />} />
           <Route path="/favorites/:id" element= {<FavoritesView />} />
           <Route path="/login" element= {<LoginView />} />

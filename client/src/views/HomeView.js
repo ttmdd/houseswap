@@ -6,9 +6,10 @@ function HomeView(props) {
 
    let properties = props.properties;
 
+
     return (
         <div className="HomeView">
-            <PropertiesList properties={properties} />
+            <PropertiesList properties={properties}/>
         </div>
     );
 }
