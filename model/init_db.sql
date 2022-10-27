@@ -8,7 +8,7 @@ CREATE TABLE properties(
     availability VARCHAR(255) NOT NULL,
     numofrooms INT NOT NULL,
     numofpeople INT NOT NULL,
-    rating INT NOT NULL,
+    rating INT,
     description VARCHAR(2000)
 );
 

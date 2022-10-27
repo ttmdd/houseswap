@@ -19,9 +19,9 @@ function SelectedProperty(props) {
         <p><b>Availability:</b> {s.availability}</p>
         <p><b>Number of people:</b> {s.numofpeople}</p>
         <p><b>Number of rooms:</b> {s.numofrooms}</p>
-        <p><b>Rating:</b> {s.rating}</p>
+        <p className={s.rating ? "" : "empty"}><b>Rating:</b> {s.rating}</p>
         <br></br>
-        <br></br>
+        
         <p>{s.description}</p>
     </div>
   

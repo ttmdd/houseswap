@@ -5,7 +5,7 @@ const db = require("../model/helper");
 // GET property list
 router.get("/", async function(req, res) {
     try {
-        let result = await db("SELECT * FROM properties ORDER BY id ASC");
+        let result = await db("SELECT * FROM properties ORDER BY id DESC");
         let properties = result.data;
         res.send(properties);
     } catch (err) {
@@ -35,14 +35,14 @@ router.post("/", async function(req, res) {
     // OR let {location, availability, numofrooms, numofpeople, rating} = req.body and then in let sql VALUES without the property.
 
     let sql = `
-        INSERT INTO properties (url, title, location, availability, numofrooms, numofpeople, rating, description)
+        INSERT INTO properties (url, title, location, availability, numofrooms, numofpeople, description)
         VALUES
-            ("${property.url}", "${property.title}", "${property.location}", "${property.availability}", ${property.numofrooms}, ${property.numofpeople}, ${property.rating}, "${property.description}")
+            ("${property.url}","${property.title}", "${property.location}", "${property.availability}", ${property.numofrooms}, ${property.numofpeople}, "${property.description}")
     `;
 
     try {
         await db(sql);
-        let result = await db("SELECT * FROM properties");
+        let result = await db("SELECT * FROM properties ORDER BY id DESC");
         res.status(201).send(result.data);
     } catch (err) {
         res.status(500).send({ error: err.message });

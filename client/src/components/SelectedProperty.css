@@ -17,6 +17,8 @@
 .propDesc {
 
     text-align: left;
+}
 
- 
+.propDesc .empty {
+    display: none;
 }
