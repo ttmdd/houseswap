@@ -30,6 +30,8 @@ function Navbar(props) {
                  <li><NavLink to="messages">MESSAGES</NavLink></li>
 
                  <li><NavLink to="new">MY HOME</NavLink></li>
+
+                 <li className="d-none"><NavLink to="edit">EDIT</NavLink></li>
             </div>)
 
            }

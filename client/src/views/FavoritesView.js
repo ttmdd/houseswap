@@ -5,6 +5,7 @@ function FavoritesView(props) {
     return (
         <div className="FavoritesView">
             <h2>Favorites</h2>
+            {/* <img src={props.clickedHeart.url} /> */}
             
         </div>
     );

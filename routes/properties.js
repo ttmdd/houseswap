@@ -60,13 +60,40 @@ router.delete("/:id", async function(req, res) {
             res.status(404).send({ error: "Property not found" });
         } else {
             await db(`DELETE FROM properties WHERE id = ${propertyId}`);
-            let result = await db("SELECT * FROM properties");
+            let result = await db("SELECT * FROM properties ORDER BY id DESC");
             res.send(result.data);
         }
     } catch (err) {
         res.status(500).send({ error: err.message });
     }
 });
+
+// UPDATE a property in the BD
+router.put("/:id", async function(req, res) {
+    let { location, availability, numofpeople, numofrooms, title, description } = req.body;
+
+    let propertyId = req.params.id;
+
+    try {
+        let result = await db(`SELECT * FROM properties WHERE id = ${propertyId}`);
+        if(result.data.length === 0) {
+            res.status(404).send( { error: "Property not found" })
+        } else {
+            let sql = `
+                UPDATE properties
+                SET location = "${location}", availability = "${availability}", numofpeople = ${numofpeople}, numofrooms = ${numofrooms}, title = "${title}", description = "${description}"
+                WHERE id = ${propertyId}
+            `;
+
+            await db(sql);
+            let result = await db("SELECT * FROM properties ORDER BY id DESC");
+            let properties = result.data;
+            res.send(properties);
+        }
+    } catch (err) {
+        res.status(500).send({ error: err.message });
+    }
+})
 
 
 module.exports = router;

@@ -9,6 +9,12 @@ function PropertiesList(props) {
     
   }
 
+  // function makeFavorite (id) {
+  //     // e.preventDefault();
+  //     // console.log("this id was clicked:", id)
+  //     props.clickedHeartCb(id);
+  // }
+
   return (
     <div className="container" id="propertiesList"> 
 
@@ -39,7 +45,7 @@ function PropertiesList(props) {
                 
                    (<div>
                    <button type="button">&#x2709;</button>     
-                   <button className="ms-2"type="button">&#x2764;</button>
+                   <button className="ms-2"type="button" onClick={e => makeFavorite(s.id)}>&#x2764;</button>
                    </div>)
                    : null
                 }
