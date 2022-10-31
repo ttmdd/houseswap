@@ -7,12 +7,11 @@ import Navbar from "./components/Navbar";
 
 import HomeView from "./views/HomeView";
 import SelectedView from "./views/SelectedView";
-// import FavoritesView from "./views/FavoritesView";
+import FavoritesView from "./views/FavoritesView";
 import MessagesView from "./views/MessagesView";
 import LoginView from "./views/LoginView";
 import MyHomeView from "./views/MyHomeView";
 import EditView from "./views/EditView";
-
 import ErrorView from "./views/ErrorView";
 
 
@@ -25,7 +24,8 @@ let [properties, setProperties] = useState([]);
 let [selected, setSelected] = useState();  // saves the property we click on to show more information about it
 let [isLoggedIn, setIsLoggedIn] = useState(false);
 let [addedProperty, setAddedProperty] = useState();  // saves the last property that was added - it is then passed down to the MyHomeView  
-// let [clickedHeart, setClickedHeart] = useState();
+
+
 const navigate = useNavigate();
 
 
@@ -53,11 +53,6 @@ function selectedProject(id) {
     setSelected(main);
     navigate("/selected");
 }
-
-// function favoriteProperty(id) {
-//   let favorite = properties.find(p => p.id === id);
-//   setClickedHeart(favorite);
-// }
 
 async function addProperty(newOne) {
     //send it to the server
@@ -102,6 +97,7 @@ async function deleteProperty(id) {
   }
 }
 
+// edits the property the user uploads
 async function editProperty(edited) {
     let options = {
       method: 'PUT',
@@ -129,6 +125,33 @@ function gotoEdit() {
   navigate("/edit");
 }
 
+// click on the heart button and make it your favorite property
+async function favoriteProperty(obj) {
+   // (obj) is the object that was sent up from PropertyList when the heart button was clicked
+  let options = {
+    method: 'PUT', 
+    headers: { 'Content-Type': 'application/json' },  
+    body: JSON.stringify(obj) 
+  }
+
+  try {
+    let response = await fetch(`/properties/${obj.id}`, options); // you are sending the updated version of the object to th server to be updated
+    if (response.ok) {
+      let updated = await response.json();
+      setProperties(updated);
+     
+     
+
+    } else {
+      console.log(`Server error: ${response.status} ${response.statusText}`);
+    }
+  } catch (err) {
+      console.log(`Network error: ${err.message}`);
+  }
+ 
+  
+}
+
   return (
     <div className="App">
 
@@ -138,10 +161,11 @@ function gotoEdit() {
       <Navbar isLoggedIn = {isLoggedIn} setIsLoggedIn={setIsLoggedIn} /> 
 
       <Routes>
-          <Route path="/" element= {<HomeView properties={properties} selectedProject={id => selectedProject(id)} clickedHeartCb={id => favoriteProperty(id)} />} />
+          <Route path="/" element= {<HomeView properties={properties} selectedProject={id => selectedProject(id)} myFavoritesCb={obj => favoriteProperty(obj)} />} />
       
           <Route path="/selected" element= {<SelectedView selectedImg={selected} />} />
-          {/* <Route path="/favorites" element= {<FavoritesView clickedHeart={clickedHeart}/>} /> */}
+          
+          <Route path="/favorites" element= {<FavoritesView properties={properties} />} />
           <Route path="/messages" element= {<MessagesView />} />
           <Route path="/login" element= {<LoginView properties={properties} selectedProject={id => selectedProject(id)} newProperty={id => addProperty(id)} isLoggedIn={isLoggedIn}/>} />
 

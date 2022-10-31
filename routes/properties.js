@@ -29,7 +29,7 @@ router.get("/:id", async function(req, res) {
     }
 });
 
-// INSERT a new property into the DB
+// ADD a new property to the DB
 router.post("/", async function(req, res) {
     let property = req.body;
     // OR let {location, availability, numofrooms, numofpeople, rating} = req.body and then in let sql VALUES without the property.
@@ -70,7 +70,7 @@ router.delete("/:id", async function(req, res) {
 
 // UPDATE a property in the BD
 router.put("/:id", async function(req, res) {
-    let { location, availability, numofpeople, numofrooms, title, description } = req.body;
+    let { location, availability, numofpeople, numofrooms, title, description, favorite } = req.body;
 
     let propertyId = req.params.id;
 
@@ -81,7 +81,7 @@ router.put("/:id", async function(req, res) {
         } else {
             let sql = `
                 UPDATE properties
-                SET location = "${location}", availability = "${availability}", numofpeople = ${numofpeople}, numofrooms = ${numofrooms}, title = "${title}", description = "${description}"
+                SET location = "${location}", availability = "${availability}", numofpeople = ${numofpeople}, numofrooms = ${numofrooms}, title = "${title}", description = "${description}, favorite = ${favorite}
                 WHERE id = ${propertyId}
             `;
 
