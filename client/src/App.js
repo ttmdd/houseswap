@@ -8,14 +8,10 @@ import Navbar from "./components/Navbar";
 import HomeView from "./views/HomeView";
 import SelectedView from "./views/SelectedView";
 import FavoritesView from "./views/FavoritesView";
-import MessagesView from "./views/MessagesView";
 import LoginView from "./views/LoginView";
 import MyHomeView from "./views/MyHomeView";
 import EditView from "./views/EditView";
 import ErrorView from "./views/ErrorView";
-
-
-
 
 
 function App() {
@@ -24,7 +20,7 @@ let [properties, setProperties] = useState([]);
 let [selected, setSelected] = useState();  // saves the property we click on to show more information about it
 let [isLoggedIn, setIsLoggedIn] = useState(false);
 let [addedProperty, setAddedProperty] = useState();  // saves the last property that was added - it is then passed down to the MyHomeView  
-
+let [favorite, setFavorite] = useState();
 
 const navigate = useNavigate();
 
@@ -97,7 +93,7 @@ async function deleteProperty(id) {
   }
 }
 
-// edits the property the user uploads
+// edits the property the user uploaded
 async function editProperty(edited) {
     let options = {
       method: 'PUT',
@@ -111,7 +107,7 @@ async function editProperty(edited) {
           let updated = await response.json();
           setProperties(updated);  // shows the updated version in the Properties list
           setAddedProperty(updated[0]);  //shows updated version in the MyProperty View
-          navigate("/new");
+          navigate("/my-home");
        
       } else {
         console.log(`Server error: ${response.status} ${response.statusText}`);
@@ -121,6 +117,7 @@ async function editProperty(edited) {
     }
 }
 
+// when you click on the edit button in the MyProperty section, it will take you to the edit view where the prepopulated form is
 function gotoEdit() {
   navigate("/edit");
 }
@@ -135,22 +132,37 @@ async function favoriteProperty(obj) {
   }
 
   try {
-    let response = await fetch(`/properties/${obj.id}`, options); // you are sending the updated version of the object to th server to be updated
+    let response = await fetch(`/properties/${obj.id}`, options); // you are sending the updated version of the object to the server to be updated
     if (response.ok) {
       let updated = await response.json();
       setProperties(updated);
-     
-     
-
+      setFavorite(updated);
     } else {
       console.log(`Server error: ${response.status} ${response.statusText}`);
     }
   } catch (err) {
       console.log(`Network error: ${err.message}`);
   }
- 
-  
 }
+
+async function removeFavorite(id) {
+  let options = {
+    method: 'DELETE'
+  };
+
+  try {
+    let response = await fetch(`/favorites/${id}`, options) // deletes it from the favorites database
+    if (response.ok) {
+      let updatedFavorites = await response.json();
+      setFavorite(updatedFavorites); 
+    } else {
+      console.log(`Server error: ${response.status} ${response.statusText}`);
+    }
+} catch (err) {
+      console.log(`Network error: ${err.message}`);
+}
+}
+
 
   return (
     <div className="App">
@@ -165,11 +177,11 @@ async function favoriteProperty(obj) {
       
           <Route path="/selected" element= {<SelectedView selectedImg={selected} />} />
           
-          <Route path="/favorites" element= {<FavoritesView properties={properties} />} />
-          <Route path="/messages" element= {<MessagesView />} />
+          <Route path="/favorites" element= {<FavoritesView properties={properties} removeFavoriteCb={id => removeFavorite(id)}/>} />
+         
           <Route path="/login" element= {<LoginView properties={properties} selectedProject={id => selectedProject(id)} newProperty={id => addProperty(id)} isLoggedIn={isLoggedIn}/>} />
 
-          <Route path="/new" element= {<MyHomeView newProperty={addProperty} addedProperty={addedProperty} deleteCb={id => deleteProperty(id)} editCb={gotoEdit} />} />
+          <Route path="/my-home" element= {<MyHomeView newProperty={addProperty} addedProperty={addedProperty} deleteCb={id => deleteProperty(id)} editCb={gotoEdit} />} />
 
           <Route path="/edit" element= {<EditView addedProperty={addedProperty} editPropertyCb={editProperty} />} /> 
 

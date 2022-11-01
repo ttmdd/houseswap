@@ -14,7 +14,7 @@ function PropertiesList(props) {
  
   function makeFavorite(obj) {
     // obj.favorite = 1;   // need to change the value of obj.favorite to true before the function is called - if you only updated the function in the app, after if (response.ok), the backend won't know when you update the value
-   obj.favorite = !obj.favorite;
+    obj.favorite = !obj.favorite;
     props.setFavoriteCb && props.setFavoriteCb(obj); // first make sure that props.setFavoriteCb is truthy and then call the function
     navigate("/favorites");
   }
@@ -51,8 +51,8 @@ function PropertiesList(props) {
                 {props.isLoggedIn ? 
                 
                    (<div>
-                   <button type="button">&#x2709;</button>     
-                   <button className="ms-2" type="button" onClick= {e => makeFavorite(s)} >&#x2764;</button> 
+                   <button className="me-2" type="button">&#x2709;</button>     
+                   <button className={s.favorite ? "favActive" : null} type="button" onClick= {e => makeFavorite(s)} >&#x2764;</button> 
                    {/* have to pass up the whole object(s) - if you are sending up s.id, only the ID will be passed, not the entire object */}
                    </div>)
                    : null

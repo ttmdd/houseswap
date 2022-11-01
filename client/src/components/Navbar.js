@@ -27,9 +27,7 @@ function Navbar(props) {
 
                  <li><NavLink to="favorites">FAVORITES</NavLink></li>
 
-                 <li><NavLink to="messages">MESSAGES</NavLink></li>
-
-                 <li><NavLink to="new">MY HOME</NavLink></li>
+                 <li><NavLink to="my-home">MY HOME</NavLink></li>
 
                  <li className="d-none"><NavLink to="edit">EDIT</NavLink></li>
             </div>)

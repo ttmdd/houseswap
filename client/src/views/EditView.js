@@ -6,6 +6,7 @@ import "./EditView.css";
 function EditView(props) {
     
     let defaultValue = props.addedProperty;
+    // addedProperty is the last property that was added - it will be used as prepopulated text in the form as the info entered by the user
 
     let [formData, setFormData] = useState(defaultValue);
 
@@ -23,7 +24,6 @@ function EditView(props) {
     function handleSubmit(event) {
         event.preventDefault();
         props.editPropertyCb(formData);
-        
     }
 
     return (
