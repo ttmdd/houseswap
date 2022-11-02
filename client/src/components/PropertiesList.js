@@ -13,14 +13,12 @@ function PropertiesList(props) {
 
  
   function makeFavorite(obj) {
-    // obj.favorite = 1;   // need to change the value of obj.favorite to true before the function is called - if you only updated the function in the app, after if (response.ok), the backend won't know when you update the value
+    // need to change the value of obj.favorite to true before the function is called - if you only updated the function in the app, after if (response.ok), the backend won't know when you update the value
     obj.favorite = !obj.favorite;
     props.setFavoriteCb && props.setFavoriteCb(obj); // first make sure that props.setFavoriteCb is truthy and then call the function
-    navigate("/favorites");
+    navigate("/favorites")       
   }
 
-
-  
 
   return (
     <div className="container" id="propertiesList"> 
@@ -41,26 +39,25 @@ function PropertiesList(props) {
                 />
                 </div>
 
-            <div className="half mt-4">
-                <p><b>Location:</b> {s.location}</p>
-                <p><b>Availability:</b> {s.availability}</p>
-                <p><b>Number of rooms:</b> {s.numofrooms}</p>
-                <p><b>Number of people:</b> {s.numofpeople}</p>
-                <p className={s.rating ? "" : "empty"}><b>Rating:</b> {s.rating}</p>
+                <div className="half mt-4">
+                    <p><b>Location:</b> {s.location}</p>
+                    <p><b>Availability:</b> {s.availability}</p>
+                    <p><b>Number of rooms:</b> {s.numofrooms}</p>
+                    <p><b>Number of people:</b> {s.numofpeople}</p>
+                    <p className={s.rating ? "" : "empty"}><b>Rating:</b> {s.rating}</p>
                 
-                {props.isLoggedIn ? 
+                   {props.isLoggedIn ? 
                 
-                   (<div>
-                   <button className="me-2" type="button">&#x2709;</button>     
-                   <button className={s.favorite ? "favActive" : null} type="button" onClick= {e => makeFavorite(s)} >&#x2764;</button> 
-                   {/* have to pass up the whole object(s) - if you are sending up s.id, only the ID will be passed, not the entire object */}
-                   </div>)
-                   : null
-                }
+                      (<div>
+                          <button className="me-2" type="button">&#x2709;</button>     
+                          <button className={s.favorite ? "favActive" : null} type="button" onClick= {e => makeFavorite(s)} >&#x2764;</button> 
+                      </div>)
+                      : null
+                  }
          
-            </div>
+                </div>
 
-</div>
+             </div>
 
    
           ))

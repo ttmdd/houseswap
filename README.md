@@ -3,12 +3,22 @@
 House Swap is an app for people who want to temporarily exchange their home with another person. It's a low-cost option for people to travel and stay at a local's home.
 
 Annonymous users of the app are able to view all the house listings and see everything except contact information.
+<br/>
+<br/>
 Logged in users are able to see all listings and all information, they can save a property as favorite, can contact the owner of a house to arrange an exchange, can add their own property and can edit or delete their posting. 
+<br/>
+<br/>
 
 Technology used to build the app: HTML, CSS, Bootstrap, JavaScript, React, Node/Express, MySQL.
+<br/>
+<br/>
+
 
 All the frontend code can be found in the client folder.
 All the backend code can be found in the server folder. 
+<br/>
+<br/>
+
 
 ## Setup
 
@@ -49,19 +59,6 @@ Run `npm run migrate` in your terminal
 - You can test your client app in `http://localhost:3000`
 - You can test your API in `http://localhost:5000/api`
 
-## Future Features 
-
-- log in option to separate anonymous and logged in users
-- search through properties based on location, availability, number of people, number of rooms, rating
-- implement a calendar for availability 
-- implement a rating system
-- show listings from people who are looking to stay in your area 
-- message function for logged in users 
-- remove a favorite property from the Favorites section (not from the Home section as it is set up currently)
-- show all properties on a map 
-- being able to upload own images instead of using an url address
-- leave reviews for properties you stayed at 
-
 
 ## Resources
 
@@ -70,9 +67,57 @@ Run `npm run migrate` in your terminal
 - [Fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch)
 - [React Documentation](https://reactjs.org/docs/hello-world.html)
 
-## Notes
+  _This is a student project that was created at [CodeOp](http://CodeOp.tech), a full stack development bootcamp in Barcelona._
+  
+<br/>
+<br/>
+<br/>
+<br/>
 
-_This is a student project that was created at [CodeOp](http://CodeOp.tech), a full stack development bootcamp in Barcelona._
+# MVP PROJECT 
+
+## Future Features 
+
+- log in option to separate anonymous and logged in users
+- search through properties based on location, availability, number of people, number of rooms, rating
+- implement a rating system
+- leave reviews for properties you stayed at
+- implement a calendar for availability 
+- show listings from people who are looking to stay in your area 
+- message function for logged in users 
+- remove a favorite property from the Favorites section (not from the Home section as it is set up currently)
+- show all properties on a map 
+- being able to upload own images instead of using an url address
+
+<br/>
+
+## Database Schema
+<br/>
+
+ <img 
+    src="table.png"
+    alt="database table"
+    style="display: inline-block; max-width: 300px">
+
+## Api routes plan
+<br/>
+
+ <img 
+    src="apiroutes1.jpg"
+    alt="api routes"
+    >
+     <img 
+    src="apiroutes2.jpg"
+    alt="api routes"
+    >
+
+<br/>
+
+## Technologies
+
+Technology used to build the app: HTML, CSS, Bootstrap, JavaScript, React, Node/Express, MySQL.
 
 
 
+
+  
