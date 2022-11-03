@@ -1,16 +1,9 @@
 import React, {useState} from 'react';
-import "./EditView.css";
-
 
 
 function EditView(props) {
     
-    let defaultValue = props.addedProperty;
-    // addedProperty is the last property that was added - it will be used as prepopulated text in the form as the info entered by the user
-
-    let [formData, setFormData] = useState(defaultValue);
-
-   
+    let [formData, setFormData] = useState(props.addedProperty); // added property is the last property that was added - will be used as prepopulated text entered by the user
 
     function handleChange(event) {
         let { name, value } = event.target;
@@ -20,18 +13,21 @@ function EditView(props) {
         }));
     }
 
-
     function handleSubmit(event) {
         event.preventDefault();
         props.editPropertyCb(formData);
     }
 
     return (
-        <div>
+        <div className="container">
+
         {
             props.addedProperty ?
 
-            (<div>
+            (<div className="row">
+                <div className="col-md-6 col-lg-4 mt-4">
+
+                <h2 className="text-start">Edit your property's information:</h2>
                  <form id="editView" onSubmit={e => handleSubmit(e)}>
 
                 <label >
@@ -103,26 +99,21 @@ function EditView(props) {
 
                 <label>
                     Description:
-                    <textarea 
-                    
+                    <textarea           
                         name="description"
                         value={formData.description}
                         onChange={e => handleChange(e)}
                     ></textarea>
                 </label>
 
-                <button type="submit">Save</button>
+                <button className="mt-2" type="submit">Save</button>
 
                 </form>
+                </div>
             </div>) 
             : null
-            }
-
-     
-   
-       
+            }        
         </div>
-
     )
 }
 

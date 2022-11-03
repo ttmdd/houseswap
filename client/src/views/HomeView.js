@@ -9,7 +9,7 @@ function HomeView(props) {
         <div className="HomeView">
             <h1>House Swap</h1>
             <p>Welcome to your home away from home! Have a look at the available houses and post your own home in the log in section. Happy swapping!</p>
-            <PropertiesList properties={props.properties} setSelectedCb={props.selectedProject} setFavoriteCb={props.myFavoritesCb} />
+            <PropertiesList properties={props.properties} isLoggedIn={props.isLoggedIn} setSelectedCb={props.selectedProject} setFavoriteCb={props.makeFavoriteCb} />
         </div>
     );
 }

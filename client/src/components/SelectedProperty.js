@@ -9,21 +9,20 @@ function SelectedProperty(props) {
   return (
     <div id="selectedProperty"> 
 
-    <div>
-        <img key={s.id} src={s.url} />
-    </div>
+      <div>
+          <img key={s.id} src={s.url} />
+      </div>
 
-    <div className="propDesc">
-        <h2>{s.title}</h2>
-        <p><b>Location:</b> {s.location}</p>
-        <p><b>Availability:</b> {s.availability}</p>
-        <p><b>Number of people:</b> {s.numofpeople}</p>
-        <p><b>Number of rooms:</b> {s.numofrooms}</p>
-        <p className={s.rating ? "" : "empty"}><b>Rating:</b> {s.rating}</p>
-        <br></br>
-        
-        <p>{s.description}</p>
-    </div>
+      <div className="propDesc">
+          <h2>{s.title}</h2>
+          <p><b>Location:</b> {s.location}</p>
+          <p><b>Availability:</b> {s.availability}</p>
+          <p><b>Number of people:</b> {s.numofpeople}</p>
+          <p><b>Number of rooms:</b> {s.numofrooms}</p>
+          <p className={s.rating ? "" : "empty"}><b>Rating:</b> {s.rating}</p>
+          <br></br>
+          <p>{s.description}</p>
+      </div>
   
 
     </div>

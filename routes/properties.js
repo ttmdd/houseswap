@@ -68,36 +68,6 @@ router.delete("/:id", async function(req, res) {
     }
 });
 
-// // GET favorite properties list
-// router.get("/favorites", async function(req, res) {
-//     try {
-//         let result = await db(`SELECT * FROM properties WHERE ${favorite === true} ORDER BY id DESC`);
-//         let favorites = result.data;
-//         res.send(favorites);
-//     } catch (err) {
-//         res.status(500).send({ error: err.message });
-//     }
-// });
-
-// // DELETE a property from the favorites section
-// router.delete("/favorites/:id", async function(req, res) {
-//     let propertyId = req.params.id;
-//     let { favorite } = req.body;
- 
-//     try {
-
-//         let result = await db(`SELECT * FROM favorites WHERE id = ${propertyId}`);
-//         if (result.data.length === 0) {
-//             res.status(404).send({ error: "Property not found" });
-//         } else {
-//             await db(`DELETE FROM properties WHERE id = ${propertyId}`);
-//             let result = await db("SELECT * FROM favorites ORDER BY id DESC");
-//             res.send(result.data);
-//         }
-//     } catch (err) {
-//         res.status(500).send({ error: err.message });
-//     }
-// });
 
 // UPDATE a property in the BD
 router.put("/:id", async function(req, res) {

@@ -32,8 +32,6 @@ function AddProperty(props) {
 
   return (
 
-
-        
             <form  id="addProperty" onSubmit={e => handleSubmit(e)}>
 
                 <label >
@@ -46,8 +44,6 @@ function AddProperty(props) {
                         onChange={e => handleChange(e)}
                     />
                 </label>
-
-
 
                 <label>
                     Location:
@@ -107,26 +103,16 @@ function AddProperty(props) {
 
                 <label>
                     Description:
-                    <textarea 
-                      
+                    <textarea          
                         name="description"
                         value={formData.description}
                         onChange={e => handleChange(e)}
                     ></textarea>
                 </label>
 
-                <button type="submit">Submit</button>
+                <button className="mt-2" type="submit">Submit</button>
 
-            </form>
-         
-
-
-   
-   
-      
-
-    
-  
+            </form>  
   );
 }
 

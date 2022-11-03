@@ -19,8 +19,8 @@ function App() {
 let [properties, setProperties] = useState([]);
 let [selected, setSelected] = useState();  // saves the property we click on to show more information about it
 let [isLoggedIn, setIsLoggedIn] = useState(false);
-let [addedProperty, setAddedProperty] = useState();  // saves the last property that was added - it is then passed down to the MyHomeView  
-let [favorite, setFavorite] = useState();
+let [addedProperty, setAddedProperty] = useState();  // saves the last property that was added - it is then passed down to the MyHomeView and EditView  
+
 
 const navigate = useNavigate();
 
@@ -63,9 +63,8 @@ async function addProperty(newOne) {
       // setAddedProperty(response);  -- can only add this after we know the response is ok
       if (response.ok) {
         let updatedProperties = await response.json();
-        setProperties(updatedProperties);
-        setAddedProperty(updatedProperties[0]);   // need to add the index to know which one to show
-      
+        setProperties(updatedProperties);     // updated the state for all properties
+        setAddedProperty(updatedProperties[0]);   // updates the state for added property - need to use index!     
       } else {
         console.log(`Server error: ${response.status} ${response.statusText}`);
       }
@@ -122,9 +121,9 @@ function gotoEdit() {
   navigate("/edit");
 }
 
-// click on the heart button and make it your favorite property
-async function favoriteProperty(obj) {
-   // (obj) is the object that was sent up from PropertyList when the heart button was clicked
+// edits the object that was sent up from the PropertyList when the heart button was clicked - it's informing the database to edit the object's property favorite to true
+async function makeFavoriteProperty(obj) {
+
   let options = {
     method: 'PUT', 
     headers: { 'Content-Type': 'application/json' },  
@@ -132,11 +131,10 @@ async function favoriteProperty(obj) {
   }
 
   try {
-    let response = await fetch(`/properties/${obj.id}`, options); // you are sending the updated version of the object to the server to be updated
+    let response = await fetch(`/properties/${obj.id}`, options); 
     if (response.ok) {
       let updated = await response.json();
       setProperties(updated);
-      setFavorite(updated);
     } else {
       console.log(`Server error: ${response.status} ${response.statusText}`);
     }
@@ -145,43 +143,23 @@ async function favoriteProperty(obj) {
   }
 }
 
-async function removeFavorite(id) {
-  let options = {
-    method: 'DELETE'
-  };
-
-  try {
-    let response = await fetch(`/favorites/${id}`, options) // deletes it from the favorites database
-    if (response.ok) {
-      let updatedFavorites = await response.json();
-      setFavorite(updatedFavorites); 
-    } else {
-      console.log(`Server error: ${response.status} ${response.statusText}`);
-    }
-} catch (err) {
-      console.log(`Network error: ${err.message}`);
-}
-}
 
 
   return (
     <div className="App">
 
-      {/* {!isLoggedIn ?
-      <Navbar setIsLoggedIn = {setIsLoggedIn}/> : null} */}
-
-      <Navbar isLoggedIn = {isLoggedIn} setIsLoggedIn={setIsLoggedIn} /> 
+      <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} /> 
 
       <Routes>
-          <Route path="/" element= {<HomeView properties={properties} selectedProject={id => selectedProject(id)} myFavoritesCb={obj => favoriteProperty(obj)} />} />
+          <Route path="/" element= {<HomeView properties={properties} isLoggedIn={isLoggedIn} selectedProject={id => selectedProject(id)} makeFavoriteCb={obj => makeFavoriteProperty(obj)}  />} />
       
           <Route path="/selected" element= {<SelectedView selectedImg={selected} />} />
           
           <Route path="/favorites" element= {<FavoritesView properties={properties} removeFavoriteCb={id => removeFavorite(id)}/>} />
          
-          <Route path="/login" element= {<LoginView properties={properties} selectedProject={id => selectedProject(id)} newProperty={id => addProperty(id)} isLoggedIn={isLoggedIn}/>} />
+          <Route path="/login" element= {<LoginView properties={properties} selectedProject={id => selectedProject(id)} isLoggedIn={isLoggedIn}  />} />
 
-          <Route path="/my-home" element= {<MyHomeView newProperty={addProperty} addedProperty={addedProperty} deleteCb={id => deleteProperty(id)} editCb={gotoEdit} />} />
+          <Route path="/my-home" element= {<MyHomeView addPropertyCb={addProperty} addedProperty={addedProperty} deleteCb={id => deleteProperty(id)} editCb={gotoEdit} />} />
 
           <Route path="/edit" element= {<EditView addedProperty={addedProperty} editPropertyCb={editProperty} />} /> 
 

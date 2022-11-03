@@ -88,6 +88,7 @@ Run `npm run migrate` in your terminal
 - remove a favorite property from the Favorites section (not from the Home section as it is set up currently)
 - show all properties on a map 
 - being able to upload own images instead of using an url address
+- proper styling
 
 <br/>
 

@@ -1,6 +1,5 @@
 import React from 'react';
 import SelectedProperty from "../components/SelectedProperty";
-// import PropertiesList from "../components/PropertiesList"
 
 
 function SelectedView(props) {
@@ -9,9 +8,7 @@ function SelectedView(props) {
 
     return (
         <div className="SelectedView">
-            <SelectedProperty selectedImg={selected} />
-            {/* <PropertiesList /> */}
-            
+            <SelectedProperty selectedImg={selected} />   
         </div>
     );
 }

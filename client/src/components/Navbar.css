@@ -2,11 +2,13 @@
     display: flex;
     flex-flow: row nowrap;
     justify-content: flex-end;
-    background-color: grey;
-    height: 50px;
-    padding-right: 10%;
-    padding-top: 8px;
+    margin: 30px 220px;
+}
 
+.underline {
+    border-bottom: 4px solid #648390;
+    padding-left: 50px;
+    padding-bottom: 15px;
 }
 
 .Navbar li {
@@ -14,11 +16,8 @@
     margin-left: 20px;
     text-decoration: none;
     font-size: 110%;
-    padding-top: 10px;
-
-
-
 }
 
-
-
+.nav-item {
+    text-decoration: none;
+}

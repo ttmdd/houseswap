@@ -1,43 +1,16 @@
-* {
-    box-sizing: border-box;
-}
-#propertiesList {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    gap: 20px;
-} 
-
-
-#propertiesList img {
-
+.img-list {
     width: 100%;
     height: 100%;
     object-fit: cover;
     aspect-ratio: 1 / 1;
     cursor: pointer;
-
 }
 
-#card {
-    background-color: grey;
-    padding: 15px;
-}
-
-.half {
-    height: 50%;
-    text-align: left;
- 
-}
-
-.half p {
-    line-height: 10px;  /* spacing in between paragraphs */
-}
-
-.half .empty {
-    display: none;
+#img-card {
+    background-color: #6f838b;
+    min-width: 200px;
 }
 
 .favActive {
     color: purple;
-}
-
+} 

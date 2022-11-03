@@ -23,42 +23,44 @@ function FavoritesView(props) {
     }
 
     return (
-        <div className="FavoritesView mt-2">
-            <h2>Favorites</h2>
+
+        <div className="container">
+            <h2 className="mb-4">Favorites</h2>
             
             
-            <div className="container mt-5" id="favoriteProperties">
+            <div className="row justify-content-center">
                 {
 
                     filtered.length > 0 ?  // cannot just be flitered ? because an empty array is still truthy - what comes after : won't show in this case
                         
                             filtered.map(f => (
-                                <div className="m-1 p-3" key ={f.id} id="card">
+                                <div className="col-sm-6 col-md-3 col-lg-2 m-2 py-2 rounded shadow-lg text-start" key ={f.id} id="fav-card">
 
                                     <div>
                                         <img
+                                            className="fav-img"
                                             src = {f.url}
                                             alt = {f.location}
                                         />
                                     </div>
                 
-                                    <div className="half mt-4">
+                                    <div className="mt-2">
                                         <p><b>Location:</b> {f.location}</p>
                                         <p><b>Availability:</b> {f.availability}</p>
                                         <p><b>Number of rooms:</b> {f.numofrooms}</p>
                                         <p><b>Number of people:</b> {f.numofpeople}</p>
                                         <p className={f.rating ? "" : "empty"}><b>Rating:</b> {f.rating}</p>
-                                        <button type="button" onClick={e => deleteFavorite(f.id)}>x</button>
+                                        <button className="me-2" type="button">&#x2709;</button>     
+                                        <button className="px-2" type="button" onClick={e => deleteFavorite(f.id)}>x</button>
                                     </div>
                 
                                 </div>
                             ))
-                   
-                        : <p>No properties added yet</p>
+                
+                    : <p>No properties added yet</p>
                 }
-            </div>
-          
-        </div>
+            </div> 
+        </div>    
     );
 }
 

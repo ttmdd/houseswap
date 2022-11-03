@@ -15,35 +15,28 @@ function Navbar(props) {
 
 
     return (
+        
         <nav className="Navbar">
+            
       
            {!props.isLoggedIn ?
-           (<div>
-                 <li onClick={handleClickHome}><NavLink to="/">HOME</NavLink></li>
-                 <li onClick={handleClickLogin}><NavLink to="login">LOG IN</NavLink></li>
-           </div>)
-            : (<div>
-                 <li><NavLink to="/login">HOME</NavLink></li>
 
-                 <li><NavLink to="favorites">FAVORITES</NavLink></li>
+                (<div className="underline">
+                        <li onClick={handleClickHome}><NavLink className="nav-item" to="/">HOME</NavLink></li>
+                        <li onClick={handleClickLogin}><NavLink className="nav-item" to="login">LOG IN</NavLink></li>
+                </div>)
 
-                 <li><NavLink to="my-home">MY HOME</NavLink></li>
+               : (<div className="underline">
+                    <li><NavLink className="nav-item" to="/login">HOME</NavLink></li>
 
-                 <li className="d-none"><NavLink to="edit">EDIT</NavLink></li>
-            </div>)
+                     <li><NavLink className="nav-item" to="favorites">FAVORITES</NavLink></li>
+
+                     <li><NavLink className="nav-item" to="my-home">MY HOME</NavLink></li>
+
+                    <li className="d-none"><NavLink className="nav-item" to="edit">EDIT</NavLink></li>
+                 </div>)
 
            }
-        
-          
-          
-
-            
- 
-                
-
-     
-                {/* <li><NavLink to="*">Error</NavLink></li> */}
- 
             
         </nav>
     );
