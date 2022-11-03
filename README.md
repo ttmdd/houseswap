@@ -9,11 +9,6 @@ Logged in users are able to see all listings and all information, they can save 
 <br/>
 <br/>
 
-Technology used to build the app: HTML, CSS, Bootstrap, JavaScript, React, Node/Express, MySQL.
-<br/>
-<br/>
-
-
 All the frontend code can be found in the client folder.
 All the backend code can be found in the server folder. 
 <br/>
@@ -34,19 +29,15 @@ Frontend: `cd client` and run `npm install` install dependencies related to Reac
 Create `.env` file in project directory and add
 
 ```
+DB_HOST=localhost
 DB_NAME=houseswap
+DB_USER=root
 DB_PASS=YOUR_PASSWORD
 ```
 
 (replace `YOUR_PASSWORD` with your actual password)
 
-(For Mac users: Type `mysql -u root -p` to access the MySQL CLI using your password.)
-
 In the MySQL CLI, type `create database houseswap;` to create a database in MySQL.
-
-Run the following in the MySQL CLI: `ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'YOUR_PASSWORD';` (replace `YOUR_PASSWORD` with your actual password)
-
-Run `node model/database.js` in your **TERMINAL**, in the **project** folder (not your MySQL CLI! Open a new terminal window for this). This will create a table called 'properties' in your database.
 
 Run `npm run migrate` in your terminal
 
