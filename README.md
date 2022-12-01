@@ -1,97 +1,89 @@
 # Full Stack House Swap App
 
+## <span style="color:#6f838b">Introduction</span>
+
 House Swap is an app for people who want to temporarily exchange their home with another person. It's a low-cost option for people to travel and stay at a local's home.
 
-Annonymous users of the app are able to view all the house listings and see everything except contact information.
-<br/>
-<br/>
-Logged in users are able to see all listings and all information, they can save a property as favorite, can contact the owner of a house to arrange an exchange, can add their own property and can edit or delete their posting. 
-<br/>
 <br/>
 
-All the frontend code can be found in the client folder.
-All the backend code can be found in the server folder. 
+## <span style="color:#6f838b">Features & Views</span>
+The app has has the following views: Home - Single House - Favorites - My Home.
+
+The app simulates the different views that an annonymous and a logged in user would have. 
+
 <br/>
+<b>Home</b>
+
+In the home view, you can see the listing of all properties. All users can see basic information for each house. Logged in users would also have access to contact information and would be able to mark a property as favorite.
+
+<br/>
+<b>Single House</b>
+
+Each house has a view of its own with additional description left by the owner.
+
+<br/>
+<b>Favorites</b>
+
+Once a logged in user has marked a house as favorite, it would appear in the list in the favorite section. It can also be removed from the selection.
+
+<br/>
+<b>My Home</b>
+
+Logged in users would have an option to create their own post, which would be added to the main listing on the Home View. Once posted, they can edit or delete it. 
+
 <br/>
 
+## <span style="color:#6f838b">Technologies
+</span>
 
-## Setup
+The app was build using HTML, CSS, Bootstrap, JavaScript, React, Node.js, Express, MySQL.
 
-### Dependencies
+<br/>
 
-Backend: Run `npm install` in the project folder to install dependencies related to Express (the server).
+## <span style="color:#6f838b">Installation
+</span>
 
-Frontend: `cd client` and run `npm install` install dependencies related to React (the client).
+1. Create a .env file:
 
-
-### Database Prep
-
-Create `.env` file in project directory and add
-
-```
 DB_HOST=localhost
 DB_NAME=houseswap
 DB_USER=root
 DB_PASS=YOUR_PASSWORD
-```
 
-(replace `YOUR_PASSWORD` with your actual password)
+(replace 'YOUR_PASSWORD' with your actual password)
 
-In the MySQL CLI, type `create database houseswap;` to create a database in MySQL.
+2. To create the database, go to your MySql terminal and type:
 
-Run `npm run migrate` in your terminal
+CREATE DATABASE houseswap;
 
+3. To run the database, go to the server side in your terminal and type:
 
-### Run Your Development Servers
+npm run migrate
 
-- Run `npm start` in project directory to start the Express server on port 5000
-- `cd client` and run `npm start` to start client server in development mode with hot reloading in port 3000.
-- Client is configured so all API calls will be proxied to port 5000 for a smoother development experience. 
-- You can test your client app in `http://localhost:3000`
-- You can test your API in `http://localhost:5000/api`
+4. While on the server side, install all NPM packages by typing:
 
+npm install
 
-## Resources
+5. to run the backend, type:
 
-- [MySQL Cheat Sheet](http://www.mysqltutorial.org/mysql-cheat-sheet.aspx)
-- [MySQL](https://dev.mysql.com/doc/refman/8.0/en/database-use.html)
-- [Fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch)
-- [React Documentation](https://reactjs.org/docs/hello-world.html)
+npm start
 
-  _This is a student project that was created at [CodeOp](http://CodeOp.tech), a full stack development bootcamp in Barcelona._
-  
-<br/>
-<br/>
-<br/>
-<br/>
+6. Cd into the client side and repeat step 4 and 5 here as well.
 
-# MVP PROJECT 
-
-## Future Features 
-
-- log in option to separate anonymous and logged in users
-- search through properties based on location, availability, number of people, number of rooms, rating
-- implement a rating system
-- leave reviews for properties you stayed at
-- implement a calendar for availability 
-- show listings from people who are looking to stay in your area 
-- message function for logged in users 
-- remove a favorite property from the Favorites section (not from the Home section as it is set up currently)
-- show all properties on a map 
-- being able to upload own images instead of using an url address
-- proper styling
+The backend runs on http://localhost:5000 and the frontend runs on http://localhost:3000.
 
 <br/>
 
-## Database Schema
+## <span style="color:#6f838b">Database Schema</span>
 <br/>
-
  <img 
     src="table.png"
     alt="database table"
     style="display: inline-block; max-width: 300px">
 
-## Api routes plan
+<br/>
+
+## <span style="color:#6f838b">API Routes</span>
 <br/>
 
  <img 
@@ -105,9 +97,24 @@ Run `npm run migrate` in your terminal
 
 <br/>
 
-## Technologies
+## <span style="color:#6f838b">Future Features</span>
+Some of the ideas for possible future features:
 
-Technology used to build the app: HTML, CSS, Bootstrap, JavaScript, React, Node/Express, MySQL.
+- log in option to separate anonymous and logged in users
+- search function
+- implement a rating system
+- leave reviews for properties you stayed at
+- implement a calendar for availability 
+- show listings from people who are looking to stay in your area 
+- message function for logged in users 
+- show all properties on a map 
+- being able to upload own images instead of using an url address
+
+<br/>
+
+ _This is a student project that was created at [CodeOp](http://CodeOp.tech), a full stack development bootcamp in Barcelona._
+
+
 
 
 
