@@ -3,8 +3,6 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 import './App.css';
 
 import Navbar from "./components/Navbar";
-
-
 import HomeView from "./views/HomeView";
 import SelectedView from "./views/SelectedView";
 import FavoritesView from "./views/FavoritesView";
@@ -51,20 +49,20 @@ function selectedProject(id) {
 }
 
 async function addProperty(newOne) {
-    //send it to the server
     let options = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newOne)
     };
-
+    console.log("new one", newOne);
     try {
       let response = await fetch("/properties", options);
       // setAddedProperty(response);  -- can only add this after we know the response is ok
       if (response.ok) {
         let updatedProperties = await response.json();
+        console.log(updatedProperties);
         setProperties(updatedProperties);     // updated the state for all properties
-        setAddedProperty(updatedProperties[0]);   // updates the state for added property - need to use index!     
+        setAddedProperty(updatedProperties[0]);   // updates the state for added property     
       } else {
         console.log(`Server error: ${response.status} ${response.statusText}`);
       }
@@ -82,7 +80,7 @@ async function deleteProperty(id) {
       let response = await fetch(`/properties/${id}`, options) // deletes it from the database
       if (response.ok) {
         let updatedProperties = await response.json();
-        setProperties(updatedProperties) // shows the updated property list without the deleted property
+        setProperties(updatedProperties); // shows the updated property list without the deleted property
         setAddedProperty(); // removes the property from the Your Property section in MyHome View
       } else {
         console.log(`Server error: ${response.status} ${response.statusText}`);
@@ -155,7 +153,7 @@ async function makeFavoriteProperty(obj) {
       
           <Route path="/selected" element= {<SelectedView selectedImg={selected} />} />
           
-          <Route path="/favorites" element= {<FavoritesView properties={properties} removeFavoriteCb={id => removeFavorite(id)}/>} />
+          <Route path="/favorites" element= {<FavoritesView properties={properties} removeFavoriteCb={id => deleteProperty(id)} makeFavoriteCb={obj => makeFavoriteProperty(obj)}/>} />
          
           <Route path="/login" element= {<LoginView properties={properties} selectedProject={id => selectedProject(id)} isLoggedIn={isLoggedIn}  />} />
 

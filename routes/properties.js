@@ -42,7 +42,9 @@ router.post("/", async function(req, res) {
 
     try {
         await db(sql);
+        console.log("*******************", sql);
         let result = await db("SELECT * FROM properties ORDER BY id DESC");
+        console.log("result", result.data);
         res.status(201).send(result.data);
     } catch (err) {
         res.status(500).send({ error: err.message });

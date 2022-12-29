@@ -18,8 +18,7 @@ function PropertiesList(props) {
   function makeFavorite(obj) {
     // need to change the value of obj.favorite to true before the function is called - if you only updated the function in the app, after if (response.ok), the backend won't know when you update the value
     obj.favorite = !obj.favorite;
-    props.setFavoriteCb && props.setFavoriteCb(obj); // first make sure that props.setFavoriteCb is truthy and then call the function
-    navigate("/favorites")       
+    props.setFavoriteCb && props.setFavoriteCb(obj);
   }
 
 

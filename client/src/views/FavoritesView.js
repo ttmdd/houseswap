@@ -3,23 +3,24 @@ import "./FavoritesView.css";
 
 function FavoritesView(props) {
 
+    let [filtered, setFiltered] = useState([]);
 
     useEffect(() => {
         setFilter();
-      }, []); // every time the page loads, call the function setFilter
+      }, []); 
 
-    let [filtered, setFiltered] = useState([]);
-
-    // filter through all the properties and create a new array of the ones who have e.favorite set to true, which means that they have been clicked on
+    // filter through all the properties and create a new array of the ones who have e.favorite set to true
     function setFilter() {
         if (props.properties) {
             let result = props.properties.filter(e => e.favorite === true)
-            setFiltered(result)
+            setFiltered(result);
         } 
     }
 
-    function deleteFavorite(id) {
-        props.removeFavoriteCb(id);
+    // remove from favorites
+    function deleteFavorite(f) {
+        f.favorite = !f.favorite;
+        props.setFavoriteCb && props.setFavoriteCb(f);
     }
 
     return (
@@ -51,7 +52,7 @@ function FavoritesView(props) {
                                         <p><b>Number of people:</b> {f.numofpeople}</p>
                                         <p className={f.rating ? "" : "empty"}><b>Rating:</b> {f.rating}</p>
                                         <button className="me-2" type="button">&#x2709;</button>     
-                                        <button className="px-2" type="button" onClick={e => deleteFavorite(f.id)}>x</button>
+                                        <button className="px-2" type="button" onClick={e => deleteFavorite(f)}>x</button>
                                     </div>
                 
                                 </div>
